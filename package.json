@@ -1,0 +1,21 @@
+{
+  "name": "eslint-plugin-starry",
+  "version": "2.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StarryInternet/eslint-plugin-starry"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/StarryInternet/eslint-plugin-starry/issues"
+  },
+  "homepage": "https://github.com/StarryInternet/eslint-plugin-starry/",
+  "dependencies": {
+    "eslint": "2.8.0"
+  }
+}
