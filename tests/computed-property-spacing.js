@@ -1,0 +1,59 @@
+"use strict";
+
+var rule = require('../lib/rules/computed-property-spacing'),
+    RuleTester = require("eslint").RuleTester;
+
+RuleTester.setDefaultConfig({
+  parserOptions: {
+    ecmaVersion: 6
+  }
+});
+
+
+var ruleTester = new RuleTester();
+ruleTester.run('computed-property-spacing', rule, {
+
+    valid: [
+        // basic test
+        {
+          code: "const t = x[ 1 ]",
+          options: ['always']
+        },
+
+        // invalid w/option off
+        {
+            code: "const off = x[1]",
+            options: ['never']
+        }
+    ],
+
+    invalid: [
+        {
+            code: "const t = x[ 1]",
+            options: ['always'],
+            errors: [{
+                message: 'A space is required before \']\'',
+                type: 'MemberExpression'
+            }]
+        },
+        {
+            code: "const t = x[1 ]",
+            options: ['always'],
+            errors: [{
+                message: 'A space is required after \'[\'',
+                type: 'MemberExpression'
+            }]
+        },
+        {
+            code: "const t = x[1]",
+            options: ['always'],
+            errors: [{
+                message: 'A space is required after \'[\'',
+                type: 'MemberExpression'
+            }, {
+                message: 'A space is required before \']\'',
+                type: 'MemberExpression'
+            }]
+        }
+    ]
+});
