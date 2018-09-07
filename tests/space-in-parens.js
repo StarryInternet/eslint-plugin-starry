@@ -24,6 +24,48 @@ ruleTester.run('space-in-parens', rule, {
         {
             code: "if (true) {}",
             options: ['never']
+        },
+
+        // default parameter
+        {
+            code: "const x = ( l = {} ) => {};",
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
+        },
+
+        // strings
+        {
+            code: "if ('123') {}",
+            options: ['always']
+        },
+
+        // function
+        {
+            code: "[].forEach( function() {} );",
+            options: ['always']
+        },
+
+        // function multiline no closing space
+        {
+            code: `[].forEach( function() {
+
+            });`,
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] } ],
+        },
+
+        // multiple object/array literals
+        {
+            code: "console.log( [ 1, 2, 3 ], { y: 'z' } );",
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
+        },
+        // single array literal
+        {
+            code: "console.log([ 1, 2, 3 ]);",
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
+        },
+        // single object literal
+        {
+            code: "console.log({ y: 'z' });",
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
         }
     ],
 
@@ -52,6 +94,78 @@ ruleTester.run('space-in-parens', rule, {
                 type: 'Program'
             }, {
                 message: 'There must be a space inside this paren.',
+                type: 'Program'
+            }]
+        },
+
+        // function
+        {
+            code: "[].forEach(function() {} );",
+            options: ['always'],
+            errors: [{
+                message: 'There must be a space inside this paren.',
+                type: 'Program'
+            }]
+        },
+
+        // function multiline no closing space
+        {
+            code: `[].forEach( function() {
+
+            } );`,
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] } ],
+            errors: [{
+                message: 'There should be no spaces inside this paren.',
+                type: 'Program'
+            }]
+        },
+
+        // default parameter
+        {
+            code: "const x = ( l = {}) => {};",
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }],
+            errors: [{
+                message: 'There must be a space inside this paren.',
+                type: 'Program'
+            }]
+        },
+
+        // strings
+        {
+            code: "if ('123' ) {}",
+            options: ['always'],
+            errors: [{
+                message: 'There should be no spaces inside this paren.',
+                type: 'Program'
+            }]
+        },
+
+        // multiple object/array literals
+        {
+            code: "console.log([ 1, 2, 3 ], { y: 'z' } );",
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }],
+            errors: [{
+                message: 'There must be a space inside this paren.',
+                type: 'Program'
+            }]
+        },
+
+        // single object literals
+        {
+            code: "console.log( { y: 'z' });",
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }],
+            errors: [{
+                message: 'There should be no spaces inside this paren.',
+                type: 'Program'
+            }]
+        },
+
+        // single array literals
+        {
+            code: "console.log([ 1, 2, 3 ] );",
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }],
+            errors: [{
+                message: 'There should be no spaces inside this paren.',
                 type: 'Program'
             }]
         }
