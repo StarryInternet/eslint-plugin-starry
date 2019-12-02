@@ -16,6 +16,6 @@
   },
   "homepage": "https://github.com/StarryInternet/eslint-plugin-starry/",
   "dependencies": {
-    "eslint": "4.0.0"
+    "eslint": "6.7.2"
   }
 }
