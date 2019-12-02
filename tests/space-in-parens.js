@@ -26,6 +26,15 @@ ruleTester.run('space-in-parens', rule, {
             options: ['never']
         },
 
+        {
+          code: "foo('bar')",
+          options: ['always']
+        },
+        {
+          code: "foo('bar')",
+          options: ['always']
+        },
+
         // default parameter
         {
             code: "const x = ( l = {} ) => {};",
@@ -72,6 +81,7 @@ ruleTester.run('space-in-parens', rule, {
     invalid: [
         {
             code: "if (true ) {}",
+            output: "if ( true ) {}",
             options: ['always'],
             errors: [{
                 message: 'There must be a space inside this paren.',
@@ -80,6 +90,7 @@ ruleTester.run('space-in-parens', rule, {
         },
         {
             code: "if ( true) {}",
+            output: "if ( true ) {}",
             options: ['always'],
             errors: [{
                 message: 'There must be a space inside this paren.',
@@ -88,6 +99,7 @@ ruleTester.run('space-in-parens', rule, {
         },
         {
             code: "if (true) {}",
+            output: "if ( true ) {}",
             options: ['always'],
             errors: [{
                 message: 'There must be a space inside this paren.',
@@ -166,6 +178,49 @@ ruleTester.run('space-in-parens', rule, {
             options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }],
             errors: [{
                 message: 'There should be no spaces inside this paren.',
+                type: 'Program'
+            }]
+        },
+
+        {
+            code: "if ( true ) {}",
+            output: "if (true) {}",
+            options: ['never'],
+            errors: [{
+                message: 'There should be no spaces inside this paren.',
+                type: 'Program'
+            }, {
+                message: 'There should be no spaces inside this paren.',
+                type: 'Program'
+            }]
+        },
+        {
+            code: "foo( 'bar')",
+            output: "foo('bar')",
+            options: ['always'],
+            errors: [{
+                message: 'There should be no spaces inside this paren.',
+                type: 'Program'
+            }]
+        },
+        {
+            code: "foo('bar' )",
+            output: "foo('bar')",
+            options: ['always'],
+            errors: [{
+                message: 'There should be no spaces inside this paren.',
+                type: 'Program'
+            }]
+        },
+        {
+            code: "foo('bar', 'baz')",
+            output: "foo( 'bar', 'baz' )",
+            options: ['always'],
+            errors: [{
+                message: 'There must be a space inside this paren.',
+                type: 'Program'
+            }, {
+                message: 'There must be a space inside this paren.',
                 type: 'Program'
             }]
         }
