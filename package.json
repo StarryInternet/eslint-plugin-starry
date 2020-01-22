@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-starry",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,6 @@
   },
   "homepage": "https://github.com/StarryInternet/eslint-plugin-starry/",
   "dependencies": {
-    "eslint": "4.0.0"
+    "eslint": "6.8.0"
   }
 }
