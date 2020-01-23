@@ -53,11 +53,15 @@ ruleTester.run('space-in-parens', rule, {
             options: ['always']
         },
 
-        // function multiline no closing space
+        // single function, multiline no closing space
         {
-            code: `[].forEach( function() {
+            code: `[].forEach( function() {\n});`,
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] } ],
+        },
 
-            });`,
+        // callback function multiline no closing space
+        {
+            code: `[].forEach( {}, function() {\n});`,
             options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] } ],
         },
 
@@ -74,6 +78,16 @@ ruleTester.run('space-in-parens', rule, {
         // single object literal
         {
             code: "console.log({ y: 'z' });",
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
+        },
+        // single multiline object literal
+        {
+            code: "console.log({ a: 'b',\nc: 'd' });",
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
+        },
+        // multiline object literal as last param
+        {
+            code: "console.log( 123, { a: 'b',\nc: 'd' });",
             options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
         }
     ],
@@ -114,6 +128,7 @@ ruleTester.run('space-in-parens', rule, {
         {
             code: "[].forEach(function() {} );",
             options: ['always'],
+            output: `[].forEach( function() {} );`,
             errors: [{
                 message: 'There must be a space inside this paren.',
                 type: 'Program'
@@ -122,10 +137,20 @@ ruleTester.run('space-in-parens', rule, {
 
         // function multiline no closing space
         {
-            code: `[].forEach( function() {
-
-            } );`,
+            code: `[].forEach( function() {\n} );`,
             options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] } ],
+            output: `[].forEach( function() {\n});`,
+            errors: [{
+                message: 'There should be no spaces inside this paren.',
+                type: 'Program'
+            }]
+        },
+
+        // callback function multiline no closing space
+        {
+            code: `[].forEach( 123, function() {\n} );`,
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] } ],
+            output: `[].forEach( 123, function() {\n});`,
             errors: [{
                 message: 'There should be no spaces inside this paren.',
                 type: 'Program'
@@ -221,6 +246,28 @@ ruleTester.run('space-in-parens', rule, {
                 type: 'Program'
             }, {
                 message: 'There must be a space inside this paren.',
+                type: 'Program'
+            }]
+        },
+
+        // single multiline object literal
+        {
+            code: "console.log({ a: 'b',\nc: 'd' } );",
+            output: "console.log({ a: 'b',\nc: 'd' });",
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }],
+            errors: [{
+                message: 'There should be no spaces inside this paren.',
+                type: 'Program'
+            }]
+        },
+
+        // multiline object literal as last param
+        {
+            code: "console.log( 123, { a: 'b',\nc: 'd' } );",
+            output: "console.log( 123, { a: 'b',\nc: 'd' });",
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }],
+            errors: [{
+                message: 'There should be no spaces inside this paren.',
                 type: 'Program'
             }]
         }
