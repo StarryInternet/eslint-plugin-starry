@@ -89,6 +89,11 @@ ruleTester.run('space-in-parens', rule, {
         {
             code: "console.log( 123, { a: 'b',\nc: 'd' });",
             options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
+        },
+        // multiline multiple args
+        {
+            code: "console.log( 123,\n 456\n);",
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
         }
     ],
 
@@ -270,6 +275,17 @@ ruleTester.run('space-in-parens', rule, {
                 message: 'There should be no spaces inside this paren.',
                 type: 'Program'
             }]
+        },
+
+        // multiline multiple args
+        {
+            code: "console.log( 123,\n456);",
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }],
+            output: "console.log( 123,\n456 );",
+            errors: [{
+              message: 'There must be a space inside this paren.',
+              type: 'Program'
+          }]
         }
     ]
 });
