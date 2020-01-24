@@ -99,6 +99,16 @@ ruleTester.run('space-in-parens', rule, {
         {
             code: "console.log( 123,\n []\n);",
             options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
+        },
+        // multiline multiple args, w/ ending single-line exception
+        {
+            code: "console.log( function() {\n}, {} );",
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
+        },
+        // multiline multiple args, w/ starting single-line exception
+        {
+            code: "console.log( {},\nfunction() {} );",
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
         }
     ],
 
@@ -290,6 +300,23 @@ ruleTester.run('space-in-parens', rule, {
             errors: [{
               message: 'There must be a space inside this paren.',
               type: 'Program'
+          }]
+        },
+
+        // multiline multiple args, w/ ending single-line exception
+        {
+          code: `
+            console.log( function() {
+
+            }, {});`,
+          output:  `
+            console.log( function() {
+
+            }, {} );`,
+          options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }],
+          errors: [{
+            message: 'There must be a space inside this paren.',
+            type: 'Program'
           }]
         }
     ]
