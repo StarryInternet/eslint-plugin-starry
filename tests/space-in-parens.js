@@ -94,6 +94,11 @@ ruleTester.run('space-in-parens', rule, {
         {
             code: "console.log( 123,\n 456\n);",
             options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
+        },
+        // multiline multiple args, w/ exception
+        {
+            code: "console.log( 123,\n []\n);",
+            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
         }
     ],
 
