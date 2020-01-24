@@ -53,12 +53,19 @@ ruleTester.run("aligned-requires", rule, {
 
     invalid: [
         {
-            code: "var t = require('fs');\n" +
-                  "var longname = require('fs');",
+            code: "\n" +
+                  "var t = require('fs');\n" +
+                  "var longname = require('fs');\n" +
+                  "var med   =  require('fs')\n" +
+                  "const { foo: bar }  =  require('fs')",
+            output: "\n" +
+                    "var t              = require('fs');\n" +
+                    "var longname       = require('fs');\n" +
+                    "var med            = require('fs')\n" +
+                    "const { foo: bar } = require('fs')",
             options: ['always'],
             errors: [{
-                message: 'Require assignment should be aligned.',
-                type: "Program"
+              message: 'This group of assignments is not aligned.'
             }]
         }
     ]
