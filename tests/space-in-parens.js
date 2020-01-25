@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
-var rule = require('../lib/rules/space-in-parens'),
-    RuleTester = require("eslint").RuleTester;
+const rule = require('../lib/rules/space-in-parens');
+const RuleTester = require('eslint').RuleTester;
 
 RuleTester.setDefaultConfig({
   parserOptions: {
@@ -10,314 +10,353 @@ RuleTester.setDefaultConfig({
 });
 
 
-var ruleTester = new RuleTester();
+const ruleTester = new RuleTester();
 ruleTester.run('space-in-parens', rule, {
 
-    valid: [
-        // basic test
-        {
-          code: "if ( true ) {}",
-          options: ['always']
-        },
+  valid: [
 
-        // invalid w/option off
-        {
-            code: "if (true) {}",
-            options: ['never']
-        },
+    // basic test
+    {
+      code: 'if ( true ) {}'
+    },
 
-        {
-          code: "foo('bar')",
-          options: ['always']
-        },
-        {
-          code: "foo('bar')",
-          options: ['always']
-        },
+    // single string
+    {
+      code: 'foo(\'bar\')'
+    },
 
-        // default parameter
-        {
-            code: "const x = ( l = {} ) => {};",
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
-        },
+    // default parameter
+    {
+      code: 'const x = ( l = {} ) => {};'
+    },
 
-        // strings
-        {
-            code: "if ('123') {}",
-            options: ['always']
-        },
+    // strings
+    {
+      code: 'if ( \'123\', \'456\' ) {}'
+    },
 
-        // function
-        {
-            code: "[].forEach( function() {} );",
-            options: ['always']
-        },
+    // function
+    {
+      code: '[].forEach( function() {} );'
+    },
 
-        // single function, multiline no closing space
-        {
-            code: `[].forEach( function() {\n});`,
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] } ],
-        },
+    // single function, multiline no closing space
+    {
+      code: `[].forEach( function() {\n});`
+    },
 
-        // callback function multiline no closing space
-        {
-            code: `[].forEach( {}, function() {\n});`,
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] } ],
-        },
+    // callback function multiline no closing space
+    {
+      code: `[].forEach( {}, function() {\n});`
+    },
 
-        // multiple object/array literals
+    // multiple object/array literals
+    {
+      code: 'console.log( [ 1, 2, 3 ], { y: \'z\' } );'
+    },
+
+    // single array literal
+    {
+      code: 'console.log([ 1, 2, 3 ]);'
+    },
+
+    // single object literal
+    {
+      code: 'console.log({ y: \'z\' });'
+    },
+
+    // single multiline object literal
+    {
+      code: 'console.log({ a: \'b\',\nc: \'d\' });'
+    },
+
+    // multiline object literal as last param
+    {
+      code: 'console.log( 123, { a: \'b\',\nc: \'d\' });'
+    },
+
+    // multiline multiple args
+    {
+      code: 'console.log( 123,\n 456\n);'
+    },
+
+    // multiline multiple args, w/ exception
+    {
+      code: 'console.log( 123,\n []\n);'
+    },
+
+    // multiline multiple args, w/ ending single-line exception
+    {
+      code: 'console.log( function() {\n}, {} );'
+    },
+
+    // multiline multiple args, w/ starting single-line exception
+    {
+      code: 'console.log( {},\nfunction() {} );'
+    },
+
+    // unmatched starting exception char
+    {
+      code: 'console.log( [].forEach( x => x ) );'
+    },
+
+    // unmatched ending exception char
+    {
+      code: 'console.log( arr[ 0 ] );'
+    }
+  ],
+
+  invalid: [
+
+    // boolean end
+    {
+      code: 'if (true ) {}',
+      output: 'if ( true ) {}',
+      errors: [
         {
-            code: "console.log( [ 1, 2, 3 ], { y: 'z' } );",
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
-        },
-        // single array literal
-        {
-            code: "console.log([ 1, 2, 3 ]);",
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
-        },
-        // single object literal
-        {
-            code: "console.log({ y: 'z' });",
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
-        },
-        // single multiline object literal
-        {
-            code: "console.log({ a: 'b',\nc: 'd' });",
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
-        },
-        // multiline object literal as last param
-        {
-            code: "console.log( 123, { a: 'b',\nc: 'd' });",
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
-        },
-        // multiline multiple args
-        {
-            code: "console.log( 123,\n 456\n);",
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
-        },
-        // multiline multiple args, w/ exception
-        {
-            code: "console.log( 123,\n []\n);",
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
-        },
-        // multiline multiple args, w/ ending single-line exception
-        {
-            code: "console.log( function() {\n}, {} );",
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
-        },
-        // multiline multiple args, w/ starting single-line exception
-        {
-            code: "console.log( {},\nfunction() {} );",
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }]
+          message: 'There must be a space after this paren.',
+          type: 'Program'
         }
-    ],
+      ]
+    },
 
-    invalid: [
+    // boolean start
+    {
+      code: 'if ( true) {}',
+      output: 'if ( true ) {}',
+      errors: [
         {
-            code: "if (true ) {}",
-            output: "if ( true ) {}",
-            options: ['always'],
-            errors: [{
-                message: 'There must be a space inside this paren.',
-                type: 'Program'
-            }]
-        },
-        {
-            code: "if ( true) {}",
-            output: "if ( true ) {}",
-            options: ['always'],
-            errors: [{
-                message: 'There must be a space inside this paren.',
-                type: 'Program'
-            }]
-        },
-        {
-            code: "if (true) {}",
-            output: "if ( true ) {}",
-            options: ['always'],
-            errors: [{
-                message: 'There must be a space inside this paren.',
-                type: 'Program'
-            }, {
-                message: 'There must be a space inside this paren.',
-                type: 'Program'
-            }]
-        },
-
-        // function
-        {
-            code: "[].forEach(function() {} );",
-            options: ['always'],
-            output: `[].forEach( function() {} );`,
-            errors: [{
-                message: 'There must be a space inside this paren.',
-                type: 'Program'
-            }]
-        },
-
-        // function multiline no closing space
-        {
-            code: `[].forEach( function() {\n} );`,
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] } ],
-            output: `[].forEach( function() {\n});`,
-            errors: [{
-                message: 'There should be no spaces inside this paren.',
-                type: 'Program'
-            }]
-        },
-
-        // callback function multiline no closing space
-        {
-            code: `[].forEach( 123, function() {\n} );`,
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] } ],
-            output: `[].forEach( 123, function() {\n});`,
-            errors: [{
-                message: 'There should be no spaces inside this paren.',
-                type: 'Program'
-            }]
-        },
-
-        // default parameter
-        {
-            code: "const x = ( l = {}) => {};",
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }],
-            errors: [{
-                message: 'There must be a space inside this paren.',
-                type: 'Program'
-            }]
-        },
-
-        // strings
-        {
-            code: "if ('123' ) {}",
-            options: ['always'],
-            errors: [{
-                message: 'There should be no spaces inside this paren.',
-                type: 'Program'
-            }]
-        },
-
-        // multiple object/array literals
-        {
-            code: "console.log([ 1, 2, 3 ], { y: 'z' } );",
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }],
-            errors: [{
-                message: 'There must be a space inside this paren.',
-                type: 'Program'
-            }]
-        },
-
-        // single object literals
-        {
-            code: "console.log( { y: 'z' });",
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }],
-            errors: [{
-                message: 'There should be no spaces inside this paren.',
-                type: 'Program'
-            }]
-        },
-
-        // single array literals
-        {
-            code: "console.log([ 1, 2, 3 ] );",
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }],
-            errors: [{
-                message: 'There should be no spaces inside this paren.',
-                type: 'Program'
-            }]
-        },
-
-        {
-            code: "if ( true ) {}",
-            output: "if (true) {}",
-            options: ['never'],
-            errors: [{
-                message: 'There should be no spaces inside this paren.',
-                type: 'Program'
-            }, {
-                message: 'There should be no spaces inside this paren.',
-                type: 'Program'
-            }]
-        },
-        {
-            code: "foo( 'bar')",
-            output: "foo('bar')",
-            options: ['always'],
-            errors: [{
-                message: 'There should be no spaces inside this paren.',
-                type: 'Program'
-            }]
-        },
-        {
-            code: "foo('bar' )",
-            output: "foo('bar')",
-            options: ['always'],
-            errors: [{
-                message: 'There should be no spaces inside this paren.',
-                type: 'Program'
-            }]
-        },
-        {
-            code: "foo('bar', 'baz')",
-            output: "foo( 'bar', 'baz' )",
-            options: ['always'],
-            errors: [{
-                message: 'There must be a space inside this paren.',
-                type: 'Program'
-            }, {
-                message: 'There must be a space inside this paren.',
-                type: 'Program'
-            }]
-        },
-
-        // single multiline object literal
-        {
-            code: "console.log({ a: 'b',\nc: 'd' } );",
-            output: "console.log({ a: 'b',\nc: 'd' });",
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }],
-            errors: [{
-                message: 'There should be no spaces inside this paren.',
-                type: 'Program'
-            }]
-        },
-
-        // multiline object literal as last param
-        {
-            code: "console.log( 123, { a: 'b',\nc: 'd' } );",
-            output: "console.log( 123, { a: 'b',\nc: 'd' });",
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }],
-            errors: [{
-                message: 'There should be no spaces inside this paren.',
-                type: 'Program'
-            }]
-        },
-
-        // multiline multiple args
-        {
-            code: "console.log( 123,\n456);",
-            options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }],
-            output: "console.log( 123,\n456 );",
-            errors: [{
-              message: 'There must be a space inside this paren.',
-              type: 'Program'
-          }]
-        },
-
-        // multiline multiple args, w/ ending single-line exception
-        {
-          code: `
-            console.log( function() {
-
-            }, {});`,
-          output:  `
-            console.log( function() {
-
-            }, {} );`,
-          options: ['always', { 'exceptions': [ '{}', '[]', 'empty' ] }],
-          errors: [{
-            message: 'There must be a space inside this paren.',
-            type: 'Program'
-          }]
+          message: 'There must be a space before this paren.',
+          type: 'Program'
         }
-    ]
+      ]
+    },
+
+    // boolean start + end
+    {
+      code: 'if (true) {}',
+      output: 'if ( true ) {}',
+      errors: [
+        {
+          message: 'There must be a space after this paren.',
+          type: 'Program'
+        },
+        {
+          message: 'There must be a space before this paren.',
+          type: 'Program'
+        }
+      ]
+    },
+
+    // function
+    {
+      code: '[].forEach(function() {} );',
+      output: `[].forEach( function() {} );`,
+      errors: [
+        {
+          message: 'There must be a space after this paren.',
+          type: 'Program'
+        }
+      ]
+    },
+
+    // function multiline no closing space
+    {
+      code: `[].forEach( function() {\n} );`,
+      output: `[].forEach( function() {\n});`,
+      errors: [
+        {
+          message: 'There should be no space before this paren.',
+          type: 'Program'
+        }
+      ]
+    },
+
+    // callback function multiline no closing space
+    {
+      code: `[].forEach( 123, function() {\n} );`,
+      output: `[].forEach( 123, function() {\n});`,
+      errors: [
+        {
+          message: 'There should be no space before this paren.',
+          type: 'Program'
+        }
+      ]
+    },
+
+    // default parameter
+    {
+      code: 'const x = ( l = {}) => {};',
+      errors: [
+        {
+          message: 'There must be a space before this paren.',
+          type: 'Program'
+        }
+      ]
+    },
+
+    // strings
+    {
+      code: 'if (\'123\' ) {}',
+      errors: [
+        {
+          message: 'There should be no space before this paren.',
+          type: 'Program'
+        }
+      ]
+    },
+
+    // multiple object/array literals
+    {
+      code: 'console.log([ 1, 2, 3 ], { y: \'z\' } );',
+      errors: [
+        {
+          message: 'There must be a space after this paren.',
+          type: 'Program'
+        }
+      ]
+    },
+
+    // single object literals
+    {
+      code: 'console.log( { y: \'z\' });',
+      errors: [
+        {
+          message: 'There should be no space after this paren.',
+          type: 'Program'
+        }
+      ]
+    },
+
+    // single array literals
+    {
+      code: 'console.log([ 1, 2, 3 ] );',
+      errors: [
+        {
+          message: 'There should be no space before this paren.',
+          type: 'Program'
+        }
+      ]
+    },
+
+    // single string literal start
+    {
+      code: 'foo( \'bar\')',
+      output: 'foo(\'bar\')',
+      errors: [
+        {
+          message: 'There should be no space after this paren.',
+          type: 'Program'
+        }
+      ]
+    },
+
+    // single string literal end
+    {
+      code: 'foo(\'bar\' )',
+      output: 'foo(\'bar\')',
+      errors: [
+        {
+          message: 'There should be no space before this paren.',
+          type: 'Program'
+        }
+      ]
+    },
+
+    // multiple strings
+    {
+      code: 'foo(\'bar\', \'baz\')',
+      output: 'foo( \'bar\', \'baz\' )',
+      errors: [
+        {
+          message: 'There must be a space after this paren.',
+          type: 'Program'
+        },
+        {
+          message: 'There must be a space before this paren.',
+          type: 'Program'
+        }
+      ]
+    },
+
+    // single multiline object literal
+    {
+      code: 'console.log({ a: \'b\',\nc: \'d\' } );',
+      output: 'console.log({ a: \'b\',\nc: \'d\' });',
+      errors: [
+        {
+          message: 'There should be no space before this paren.',
+          type: 'Program'
+        }
+      ]
+    },
+
+    // multiline object literal as last param
+    {
+      code: 'console.log( 123, { a: \'b\',\nc: \'d\' } );',
+      output: 'console.log( 123, { a: \'b\',\nc: \'d\' });',
+      errors: [
+        {
+          message: 'There should be no space before this paren.',
+          type: 'Program'
+        }
+      ]
+    },
+
+    // multiline multiple args
+    {
+      code: 'console.log( 123,\n456);',
+      output: 'console.log( 123,\n456 );',
+      errors: [
+        {
+          message: 'There must be a space before this paren.',
+          type: 'Program'
+        }
+      ]
+    },
+
+    // multiline multiple args, w/ ending single-line exception
+    {
+      code: 'console.log( function() {\n\n}, {});',
+      output: 'console.log( function() {\n\n}, {} );',
+      errors: [
+        {
+          message: 'There must be a space before this paren.',
+          type: 'Program'
+        }
+      ]
+    },
+
+    // unmatched starting exception char
+    {
+      code: 'console.log([].forEach( x => x ));',
+      output: 'console.log( [].forEach( x => x ) );',
+      errors: [
+        {
+          message: 'There must be a space after this paren.',
+          type: 'Program'
+        },
+        {
+          message: 'There must be a space before this paren.',
+          type: 'Program'
+        }
+      ]
+    },
+
+    // unmatched ending exception char
+    {
+      code: 'console.log(arr[ 0 ]);',
+      output: 'console.log( arr[ 0 ] );',
+      errors: [
+        {
+          message: 'There must be a space after this paren.',
+          type: 'Program'
+        },
+        {
+          message: 'There must be a space before this paren.',
+          type: 'Program'
+        }
+      ]
+    }
+  ]
 });
