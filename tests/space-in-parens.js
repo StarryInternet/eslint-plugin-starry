@@ -103,6 +103,31 @@ ruleTester.run('space-in-parens', rule, {
     // unmatched ending exception char
     {
       code: 'console.log( arr[ 0 ] );'
+    },
+
+    // opener exceptions on separate line
+    {
+      code: `
+        Object.assign(
+          { foo: 'bar' },
+          someOtherObject
+        );
+      `
+    },
+
+    // closer exceptions on separate line
+    {
+      code: `
+        Object.defineProperty(
+          foo,
+          'bar',
+          {
+            get() {
+              return 'lol'
+            }
+          }
+        );
+      `
     }
   ],
 
