@@ -1,6 +1,6 @@
 'use strict';
 
-const rule = require('../lib/rules/aligned-requires');
+const rule       = require('../lib/rules/aligned-requires');
 const RuleTester = require('eslint').RuleTester;
 
 RuleTester.setDefaultConfig({
@@ -11,7 +11,7 @@ RuleTester.setDefaultConfig({
 
 
 const ruleTester = new RuleTester();
-ruleTester.run('aligned-requires', rule, {
+ruleTester.run( 'aligned-requires', rule, {
 
   valid: [
     // basic test

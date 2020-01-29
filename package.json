@@ -1,10 +1,10 @@
 {
   "name": "eslint-plugin-starry",
-  "version": "7.3.6",
+  "version": "7.3.7",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node tests/index"
+    "test": "eslint ./ && node tests/index"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,8 @@
   "homepage": "https://github.com/StarryInternet/eslint-plugin-starry/",
   "dependencies": {
     "eslint": "6.8.0"
+  },
+  "devDependencies": {
+    "eslint-config-starry": "^9.0.2"
   }
 }

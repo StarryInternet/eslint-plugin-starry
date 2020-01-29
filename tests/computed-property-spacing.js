@@ -1,6 +1,6 @@
 'use strict';
 
-const rule = require('../lib/rules/computed-property-spacing');
+const rule       = require('../lib/rules/computed-property-spacing');
 const RuleTester = require('eslint').RuleTester;
 
 RuleTester.setDefaultConfig({
@@ -11,19 +11,13 @@ RuleTester.setDefaultConfig({
 
 
 const ruleTester = new RuleTester();
-ruleTester.run('computed-property-spacing', rule, {
+ruleTester.run( 'computed-property-spacing', rule, {
 
   valid: [
     // basic test
     {
       code: 'const t = x[ 1 ]',
       options: [ 'always' ]
-    },
-
-    // invalid w/option off
-    {
-      code: 'const off = x[1]',
-      options: [ 'never' ]
     }
   ],
 

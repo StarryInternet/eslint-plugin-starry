@@ -1,7 +1,9 @@
+const rule = name => require( `./lib/rules/${ name }` );
+
 module.exports = {
   rules: {
-    'computed-property-spacing': require('./lib/rules/computed-property-spacing'),
-    'space-in-parens': require('./lib/rules/space-in-parens'),
-    'aligned-requires': require('./lib/rules/aligned-requires')
+    'computed-property-spacing': rule('computed-property-spacing'),
+    'space-in-parens': rule('space-in-parens'),
+    'aligned-requires': rule('aligned-requires')
   }
 };

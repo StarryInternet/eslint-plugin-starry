@@ -1,6 +1,6 @@
 'use strict';
 
-const rule = require('../lib/rules/space-in-parens');
+const rule       = require('../lib/rules/space-in-parens');
 const RuleTester = require('eslint').RuleTester;
 
 RuleTester.setDefaultConfig({
@@ -11,7 +11,7 @@ RuleTester.setDefaultConfig({
 
 
 const ruleTester = new RuleTester();
-ruleTester.run('space-in-parens', rule, {
+ruleTester.run( 'space-in-parens', rule, {
 
   valid: [
 
