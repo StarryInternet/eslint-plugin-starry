@@ -18,6 +18,14 @@ ruleTester.run( 'computed-property-spacing', rule, {
     {
       code: 'const t = x[ 1 ]',
       options: [ 'always' ]
+    },
+    {
+      code: 'const o = { [ foo ]: "bar" }',
+      options: [ 'always' ]
+    },
+    {
+      code: 'class Foo { [ bar ]() {} }',
+      options: [ 'always' ]
     }
   ],
 
@@ -47,6 +55,30 @@ ruleTester.run( 'computed-property-spacing', rule, {
       }, {
         message: 'A space is required before \']\'',
         type: 'MemberExpression'
+      } ]
+    },
+    {
+      code: 'const o = { [foo]: "bar" };',
+      output: 'const o = { [ foo ]: "bar" };',
+      options: [ 'always' ],
+      errors: [ {
+        message: 'A space is required after \'[\'',
+        type: 'Property'
+      }, {
+        message: 'A space is required before \']\'',
+        type: 'Property'
+      } ]
+    },
+    {
+      code: 'class Foo { [bar]() {} }',
+      output: 'class Foo { [ bar ]() {} }',
+      options: [ 'always' ],
+      errors: [ {
+        message: 'A space is required after \'[\'',
+        type: 'MethodDefinition'
+      }, {
+        message: 'A space is required before \']\'',
+        type: 'MethodDefinition'
       } ]
     }
   ]
