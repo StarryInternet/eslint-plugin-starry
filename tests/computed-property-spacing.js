@@ -1,5 +1,3 @@
-'use strict';
-
 const rule       = require('../lib/rules/computed-property-spacing');
 const RuleTester = require('eslint').RuleTester;
 
@@ -32,6 +30,7 @@ ruleTester.run( 'computed-property-spacing', rule, {
   invalid: [
     {
       code: 'const t = x[ 1]',
+      output: 'const t = x[ 1 ]',
       options: [ 'always' ],
       errors: [ {
         message: 'A space is required before \']\'',
@@ -40,6 +39,7 @@ ruleTester.run( 'computed-property-spacing', rule, {
     },
     {
       code: 'const t = x[1 ]',
+      output: 'const t = x[ 1 ]',
       options: [ 'always' ],
       errors: [ {
         message: 'A space is required after \'[\'',
@@ -48,6 +48,7 @@ ruleTester.run( 'computed-property-spacing', rule, {
     },
     {
       code: 'const t = x[1]',
+      output: 'const t = x[ 1 ]',
       options: [ 'always' ],
       errors: [ {
         message: 'A space is required after \'[\'',
@@ -59,6 +60,7 @@ ruleTester.run( 'computed-property-spacing', rule, {
     },
     {
       code: 'const o = { [foo]: "bar" };',
+      output: 'const o = { [ foo ]: "bar" };',
       output: 'const o = { [ foo ]: "bar" };',
       options: [ 'always' ],
       errors: [ {

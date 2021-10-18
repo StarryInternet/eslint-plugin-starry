@@ -1,5 +1,3 @@
-'use strict';
-
 const rule       = require('../lib/rules/space-in-parens');
 const RuleTester = require('eslint').RuleTester;
 
@@ -212,6 +210,7 @@ ruleTester.run( 'space-in-parens', rule, {
     // default parameter
     {
       code: 'const x = ( l = {}) => {};',
+      output: 'const x = ( l = {} ) => {};',
       errors: [
         {
           message: 'There must be a space before this paren.',
@@ -223,6 +222,7 @@ ruleTester.run( 'space-in-parens', rule, {
     // strings
     {
       code: 'if (\'123\' ) {}',
+      output: 'if (\'123\') {}',
       errors: [
         {
           message: 'There should be no space before this paren.',
@@ -234,6 +234,7 @@ ruleTester.run( 'space-in-parens', rule, {
     // multiple object/array literals
     {
       code: 'console.log([ 1, 2, 3 ], { y: \'z\' } );',
+      output: 'console.log( [ 1, 2, 3 ], { y: \'z\' } );',
       errors: [
         {
           message: 'There must be a space after this paren.',
@@ -245,6 +246,7 @@ ruleTester.run( 'space-in-parens', rule, {
     // single object literals
     {
       code: 'console.log( { y: \'z\' });',
+      output: 'console.log({ y: \'z\' });',
       errors: [
         {
           message: 'There should be no space after this paren.',
@@ -256,6 +258,7 @@ ruleTester.run( 'space-in-parens', rule, {
     // single array literals
     {
       code: 'console.log([ 1, 2, 3 ] );',
+      output: 'console.log([ 1, 2, 3 ]);',
       errors: [
         {
           message: 'There should be no space before this paren.',

@@ -1,7 +1,4 @@
 {
   "root": true,
-  "extends": "starry",
-  "parserOptions": {
-    "ecmaVersion": 9
-  }
+  "extends": "@starryinternet/starry"
 }

@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-starry",
-  "version": "7.3.8",
+  "version": "8.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -15,10 +15,11 @@
     "url": "https://github.com/StarryInternet/eslint-plugin-starry/issues"
   },
   "homepage": "https://github.com/StarryInternet/eslint-plugin-starry/",
-  "dependencies": {
-    "eslint": "6.8.0"
+  "peerDependencies": {
+    "eslint": ">=8.0.1"
   },
   "devDependencies": {
-    "eslint-config-starry": "^9.0.2"
+    "@starryinternet/eslint-config-starry": "^10.0.0",
+    "eslint": "8.0.1"
   }
 }

@@ -1,5 +1,3 @@
-'use strict';
-
 const rule       = require('../lib/rules/aligned-requires');
 const RuleTester = require('eslint').RuleTester;
 
