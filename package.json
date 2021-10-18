@@ -1,5 +1,5 @@
 {
-  "name": "eslint-plugin-starry",
+  "name": "@starryinternet/eslint-plugin-starry",
   "version": "8.0.0",
   "description": "",
   "main": "index.js",
