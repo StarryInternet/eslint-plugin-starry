@@ -20,6 +20,8 @@
   },
   "devDependencies": {
     "@starryinternet/eslint-config-starry": "^10.0.0",
-    "eslint": "8.0.1"
+    "@starryinternet/eslint-plugin-starry": "^8.0.0",
+    "eslint": "8.0.1",
+    "eslint-plugin-node": "^11.1.0"
   }
 }
