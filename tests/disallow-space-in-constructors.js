@@ -2,7 +2,7 @@ const rule       = require('../lib/rules/disallow-space-in-constructors');
 const RuleTester = require('eslint').RuleTester;
 
 RuleTester.setDefaultConfig({
-  parserOptions: {
+  languageOptions: {
     ecmaVersion: 6
   }
 });

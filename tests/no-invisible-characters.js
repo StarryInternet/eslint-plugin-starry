@@ -2,7 +2,7 @@ const rule       = require('../lib/rules/no-invisible-characters');
 const RuleTester = require('eslint').RuleTester;
 
 RuleTester.setDefaultConfig({
-  parserOptions: {
+  languageOptions: {
     ecmaVersion: 6
   }
 });
@@ -13,7 +13,7 @@ ruleTester.run( 'no-invisible-characters', rule, {
   valid: [
     {
       code: 'const t = x[ 0 ]',
-      options: [ 'always' ]
+      options: []
     }
   ],
 
@@ -22,7 +22,7 @@ ruleTester.run( 'no-invisible-characters', rule, {
       // HANGUL FILLER
       code: 'const ㅤ = x[ 0 ]',
       output: 'const \\u3164 = x[ 0 ]',
-      options: [ 'always' ],
+      options: [],
       errors: [
         {
           message: 'Unexpected invisible character. Use \\u3164 instead.'
@@ -33,7 +33,7 @@ ruleTester.run( 'no-invisible-characters', rule, {
       // HANGUL CHOSEONG FILLER
       code: 'const ᅟ = x[ 1 ]',
       output: 'const \\u115F = x[ 1 ]',
-      options: [ 'always' ],
+      options: [],
       errors: [
         {
           message: 'Unexpected invisible character. Use \\u115F instead.'
@@ -44,7 +44,7 @@ ruleTester.run( 'no-invisible-characters', rule, {
       // HANGUL JUNGSEONG FILLER
       code: 'const ᅠ = x[ 2 ]',
       output: 'const \\u1160 = x[ 2 ]',
-      options: [ 'always' ],
+      options: [],
       errors: [
         {
           message: 'Unexpected invisible character. Use \\u1160 instead.'

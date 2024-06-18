@@ -1,10 +1,10 @@
 {
   "name": "@starryinternet/eslint-plugin-starry",
-  "version": "8.1.0",
+  "version": "9.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "eslint ./ && node tests/index"
+    "test": "node tests/index"
   },
   "repository": {
     "type": "git",
@@ -16,12 +16,9 @@
   },
   "homepage": "https://github.com/StarryInternet/eslint-plugin-starry/",
   "peerDependencies": {
-    "eslint": ">=8.0.1"
+    "eslint": ">=9.0.0"
   },
   "devDependencies": {
-    "@starryinternet/eslint-config-starry": "^10.0.0",
-    "@starryinternet/eslint-plugin-starry": "^8.0.0",
-    "eslint": "8.0.1",
-    "eslint-plugin-node": "^11.1.0"
+    "eslint": "9.5.0"
   }
 }

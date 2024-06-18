@@ -2,7 +2,7 @@ const rule       = require('../lib/rules/computed-property-spacing');
 const RuleTester = require('eslint').RuleTester;
 
 RuleTester.setDefaultConfig({
-  parserOptions: {
+  languageOptions: {
     ecmaVersion: 6
   }
 });
@@ -15,15 +15,15 @@ ruleTester.run( 'computed-property-spacing', rule, {
     // basic test
     {
       code: 'const t = x[ 1 ]',
-      options: [ 'always' ]
+      options: []
     },
     {
       code: 'const o = { [ foo ]: "bar" }',
-      options: [ 'always' ]
+      options: []
     },
     {
       code: 'class Foo { [ bar ]() {} }',
-      options: [ 'always' ]
+      options: []
     }
   ],
 
@@ -31,7 +31,7 @@ ruleTester.run( 'computed-property-spacing', rule, {
     {
       code: 'const t = x[ 1]',
       output: 'const t = x[ 1 ]',
-      options: [ 'always' ],
+      options: [],
       errors: [ {
         message: 'A space is required before \']\'',
         type: 'MemberExpression'
@@ -40,7 +40,7 @@ ruleTester.run( 'computed-property-spacing', rule, {
     {
       code: 'const t = x[1 ]',
       output: 'const t = x[ 1 ]',
-      options: [ 'always' ],
+      options: [],
       errors: [ {
         message: 'A space is required after \'[\'',
         type: 'MemberExpression'
@@ -49,7 +49,7 @@ ruleTester.run( 'computed-property-spacing', rule, {
     {
       code: 'const t = x[1]',
       output: 'const t = x[ 1 ]',
-      options: [ 'always' ],
+      options: [],
       errors: [ {
         message: 'A space is required after \'[\'',
         type: 'MemberExpression'
@@ -62,7 +62,7 @@ ruleTester.run( 'computed-property-spacing', rule, {
       code: 'const o = { [foo]: "bar" };',
       output: 'const o = { [ foo ]: "bar" };',
       output: 'const o = { [ foo ]: "bar" };',
-      options: [ 'always' ],
+      options: [],
       errors: [ {
         message: 'A space is required after \'[\'',
         type: 'Property'
@@ -74,7 +74,7 @@ ruleTester.run( 'computed-property-spacing', rule, {
     {
       code: 'class Foo { [bar]() {} }',
       output: 'class Foo { [ bar ]() {} }',
-      options: [ 'always' ],
+      options: [],
       errors: [ {
         message: 'A space is required after \'[\'',
         type: 'MethodDefinition'

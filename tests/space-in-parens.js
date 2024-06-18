@@ -2,7 +2,7 @@ const rule       = require('../lib/rules/space-in-parens');
 const RuleTester = require('eslint').RuleTester;
 
 RuleTester.setDefaultConfig({
-  parserOptions: {
+  languageOptions: {
     ecmaVersion: 6
   }
 });

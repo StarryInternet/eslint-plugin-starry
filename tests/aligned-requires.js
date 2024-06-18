@@ -2,7 +2,7 @@ const rule       = require('../lib/rules/aligned-requires');
 const RuleTester = require('eslint').RuleTester;
 
 RuleTester.setDefaultConfig({
-  parserOptions: {
+  languageOptions: {
     ecmaVersion: 6
   }
 });
@@ -16,36 +16,25 @@ ruleTester.run( 'aligned-requires', rule, {
     {
       code: 'var t        = require(\'fs\');\n' +
                 'var longname = require(\'fs\');',
-      options: [ 'always' ]
+      options: []
     },
 
     // only require certain properties
     {
       code: 'const foo = require(\'foo\');\n' +
                 'const baz = require(\'bar\').baz;',
-      options: [ 'always' ]
+      options: []
     },
     {
       code: 'const foo     = require(\'foo\');\n' +
                 'const { baz } = require(\'bar\');',
-      options: [ 'always' ]
+      options: []
     },
 
     // no specified behavior for multiple declerations
     {
       code: 'var t = require(\'fs\'), a = require(\'fs\');',
-      options: [ 'always' ]
-    },
-
-    // invalid w/option off
-    {
-      code: 'var t = require(\'fs\');\n' +
-                  'var longname = require(\'fs\');',
-      options: [ 'never' ]
-    },
-    {
-      code: 'var t = require(\'fs\');\n' +
-                  'var longname = require(\'fs\');'
+      options: []
     }
   ],
 
@@ -61,7 +50,7 @@ ruleTester.run( 'aligned-requires', rule, {
                     'var longname       = require(\'fs\');\n' +
                     'var med            = require(\'fs\')\n' +
                     'const { foo: bar } = require(\'fs\')',
-      options: [ 'always' ],
+      options: [],
       errors: [ {
         message: 'This group of assignments is not aligned.'
       } ]
