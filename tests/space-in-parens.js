@@ -137,8 +137,7 @@ ruleTester.run( 'space-in-parens', rule, {
       output: 'if ( true ) {}',
       errors: [
         {
-          message: 'There must be a space after this paren.',
-          type: 'Program'
+          message: 'There must be a space after this paren.'
         }
       ]
     },
@@ -149,8 +148,7 @@ ruleTester.run( 'space-in-parens', rule, {
       output: 'if ( true ) {}',
       errors: [
         {
-          message: 'There must be a space before this paren.',
-          type: 'Program'
+          message: 'There must be a space before this paren.'
         }
       ]
     },
@@ -161,12 +159,10 @@ ruleTester.run( 'space-in-parens', rule, {
       output: 'if ( true ) {}',
       errors: [
         {
-          message: 'There must be a space after this paren.',
-          type: 'Program'
+          message: 'There must be a space after this paren.'
         },
         {
-          message: 'There must be a space before this paren.',
-          type: 'Program'
+          message: 'There must be a space before this paren.'
         }
       ]
     },
@@ -177,8 +173,7 @@ ruleTester.run( 'space-in-parens', rule, {
       output: `[].forEach( function() {} );`,
       errors: [
         {
-          message: 'There must be a space after this paren.',
-          type: 'Program'
+          message: 'There must be a space after this paren.'
         }
       ]
     },
@@ -189,8 +184,7 @@ ruleTester.run( 'space-in-parens', rule, {
       output: `[].forEach( function() {\n});`,
       errors: [
         {
-          message: 'There should be no space before this paren.',
-          type: 'Program'
+          message: 'There should be no space before this paren.'
         }
       ]
     },
@@ -201,8 +195,7 @@ ruleTester.run( 'space-in-parens', rule, {
       output: `[].forEach( 123, function() {\n});`,
       errors: [
         {
-          message: 'There should be no space before this paren.',
-          type: 'Program'
+          message: 'There should be no space before this paren.'
         }
       ]
     },
@@ -213,8 +206,7 @@ ruleTester.run( 'space-in-parens', rule, {
       output: 'const x = ( l = {} ) => {};',
       errors: [
         {
-          message: 'There must be a space before this paren.',
-          type: 'Program'
+          message: 'There must be a space before this paren.'
         }
       ]
     },
@@ -225,8 +217,7 @@ ruleTester.run( 'space-in-parens', rule, {
       output: 'if (\'123\') {}',
       errors: [
         {
-          message: 'There should be no space before this paren.',
-          type: 'Program'
+          message: 'There should be no space before this paren.'
         }
       ]
     },
@@ -237,8 +228,7 @@ ruleTester.run( 'space-in-parens', rule, {
       output: 'console.log( [ 1, 2, 3 ], { y: \'z\' } );',
       errors: [
         {
-          message: 'There must be a space after this paren.',
-          type: 'Program'
+          message: 'There must be a space after this paren.'
         }
       ]
     },
@@ -249,8 +239,7 @@ ruleTester.run( 'space-in-parens', rule, {
       output: 'console.log({ y: \'z\' });',
       errors: [
         {
-          message: 'There should be no space after this paren.',
-          type: 'Program'
+          message: 'There should be no space after this paren.'
         }
       ]
     },
@@ -261,8 +250,7 @@ ruleTester.run( 'space-in-parens', rule, {
       output: 'console.log([ 1, 2, 3 ]);',
       errors: [
         {
-          message: 'There should be no space before this paren.',
-          type: 'Program'
+          message: 'There should be no space before this paren.'
         }
       ]
     },
@@ -273,8 +261,7 @@ ruleTester.run( 'space-in-parens', rule, {
       output: 'foo(\'bar\')',
       errors: [
         {
-          message: 'There should be no space after this paren.',
-          type: 'Program'
+          message: 'There should be no space after this paren.'
         }
       ]
     },
@@ -285,8 +272,7 @@ ruleTester.run( 'space-in-parens', rule, {
       output: 'foo(\'bar\')',
       errors: [
         {
-          message: 'There should be no space before this paren.',
-          type: 'Program'
+          message: 'There should be no space before this paren.'
         }
       ]
     },
@@ -297,12 +283,10 @@ ruleTester.run( 'space-in-parens', rule, {
       output: 'foo( \'bar\', \'baz\' )',
       errors: [
         {
-          message: 'There must be a space after this paren.',
-          type: 'Program'
+          message: 'There must be a space after this paren.'
         },
         {
-          message: 'There must be a space before this paren.',
-          type: 'Program'
+          message: 'There must be a space before this paren.'
         }
       ]
     },
@@ -313,8 +297,7 @@ ruleTester.run( 'space-in-parens', rule, {
       output: 'console.log({ a: \'b\',\nc: \'d\' });',
       errors: [
         {
-          message: 'There should be no space before this paren.',
-          type: 'Program'
+          message: 'There should be no space before this paren.'
         }
       ]
     },
@@ -325,8 +308,7 @@ ruleTester.run( 'space-in-parens', rule, {
       output: 'console.log( 123, { a: \'b\',\nc: \'d\' });',
       errors: [
         {
-          message: 'There should be no space before this paren.',
-          type: 'Program'
+          message: 'There should be no space before this paren.'
         }
       ]
     },
@@ -337,8 +319,7 @@ ruleTester.run( 'space-in-parens', rule, {
       output: 'console.log( 123,\n456 );',
       errors: [
         {
-          message: 'There must be a space before this paren.',
-          type: 'Program'
+          message: 'There must be a space before this paren.'
         }
       ]
     },
@@ -349,8 +330,7 @@ ruleTester.run( 'space-in-parens', rule, {
       output: 'console.log( function() {\n\n}, {} );',
       errors: [
         {
-          message: 'There must be a space before this paren.',
-          type: 'Program'
+          message: 'There must be a space before this paren.'
         }
       ]
     },
@@ -361,12 +341,10 @@ ruleTester.run( 'space-in-parens', rule, {
       output: 'console.log( [].forEach( x => x ) );',
       errors: [
         {
-          message: 'There must be a space after this paren.',
-          type: 'Program'
+          message: 'There must be a space after this paren.'
         },
         {
-          message: 'There must be a space before this paren.',
-          type: 'Program'
+          message: 'There must be a space before this paren.'
         }
       ]
     },
@@ -377,12 +355,10 @@ ruleTester.run( 'space-in-parens', rule, {
       output: 'console.log( arr[ 0 ] );',
       errors: [
         {
-          message: 'There must be a space after this paren.',
-          type: 'Program'
+          message: 'There must be a space after this paren.'
         },
         {
-          message: 'There must be a space before this paren.',
-          type: 'Program'
+          message: 'There must be a space before this paren.'
         }
       ]
     }

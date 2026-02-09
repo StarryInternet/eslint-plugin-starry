@@ -33,8 +33,7 @@ ruleTester.run( 'computed-property-spacing', rule, {
       output: 'const t = x[ 1 ]',
       options: [],
       errors: [ {
-        message: 'A space is required before \']\'',
-        type: 'MemberExpression'
+        message: 'A space is required before \']\''
       } ]
     },
     {
@@ -42,8 +41,7 @@ ruleTester.run( 'computed-property-spacing', rule, {
       output: 'const t = x[ 1 ]',
       options: [],
       errors: [ {
-        message: 'A space is required after \'[\'',
-        type: 'MemberExpression'
+        message: 'A space is required after \'[\''
       } ]
     },
     {
@@ -51,24 +49,19 @@ ruleTester.run( 'computed-property-spacing', rule, {
       output: 'const t = x[ 1 ]',
       options: [],
       errors: [ {
-        message: 'A space is required after \'[\'',
-        type: 'MemberExpression'
+        message: 'A space is required after \'[\''
       }, {
-        message: 'A space is required before \']\'',
-        type: 'MemberExpression'
+        message: 'A space is required before \']\''
       } ]
     },
     {
       code: 'const o = { [foo]: "bar" };',
       output: 'const o = { [ foo ]: "bar" };',
-      output: 'const o = { [ foo ]: "bar" };',
       options: [],
       errors: [ {
-        message: 'A space is required after \'[\'',
-        type: 'Property'
+        message: 'A space is required after \'[\''
       }, {
-        message: 'A space is required before \']\'',
-        type: 'Property'
+        message: 'A space is required before \']\''
       } ]
     },
     {
@@ -76,11 +69,9 @@ ruleTester.run( 'computed-property-spacing', rule, {
       output: 'class Foo { [ bar ]() {} }',
       options: [],
       errors: [ {
-        message: 'A space is required after \'[\'',
-        type: 'MethodDefinition'
+        message: 'A space is required after \'[\''
       }, {
-        message: 'A space is required before \']\'',
-        type: 'MethodDefinition'
+        message: 'A space is required before \']\''
       } ]
     }
   ]
