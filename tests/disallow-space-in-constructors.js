@@ -39,8 +39,7 @@ ruleTester.run( 'disallow-space-in-constructors', rule, {
       errors: [
         {
           message: 'Unnecessary space in parens ' +
-            'when invoking a constructor with no arguments.',
-          type: 'NewExpression'
+            'when invoking a constructor with no arguments.'
         }
       ]
     },
@@ -50,8 +49,7 @@ ruleTester.run( 'disallow-space-in-constructors', rule, {
       errors: [
         {
           message: 'Unnecessary space in parens ' +
-              'when invoking a constructor with no arguments.',
-          type: 'NewExpression'
+              'when invoking a constructor with no arguments.'
         }
       ]
     },
@@ -61,8 +59,7 @@ ruleTester.run( 'disallow-space-in-constructors', rule, {
       errors: [
         {
           message: 'Unnecessary space in parens ' +
-                'when invoking a constructor with no arguments.',
-          type: 'NewExpression'
+                'when invoking a constructor with no arguments.'
         }
       ]
     },
@@ -72,8 +69,7 @@ ruleTester.run( 'disallow-space-in-constructors', rule, {
       errors: [
         {
           message: 'Unnecessary space in parens ' +
-                  'when invoking a constructor with no arguments.',
-          type: 'NewExpression'
+                  'when invoking a constructor with no arguments.'
         }
       ]
     }
